@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise AI Flower Hub</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+</head>
+<body>
+
+<div class="app-wrapper">
+    <div class="header-actions">
+        <button id="themeToggle" class="action-btn">🌓 Toggle Theme</button>
+    </div>
+
+    <div class="container">
+        <h1>🌸 Flower<span>ID</span> Pro</h1>
+        <p class="subtitle">Edge AI Analysis System running Transfer Learning Networks</p>
+
+        <div id="dropZone" class="drop-zone">
+            <p>Drag & Drop Flower Image Here or <br><span class="highlight">Click to Browse</span></p>
+            <input type="file" id="imageSelector" accept="image/*">
+        </div>
+
+        <div class="camera-control-box">
+            <button id="startCamBtn" class="btn secondary">🎥 Open Live Camera</button>
+            <button id="captureBtn" class="btn primary" style="display:none;">📸 Capture Frame</button>
+            <video id="videoFeed" autoplay playsinline style="display:none;"></video>
+        </div>
+
+        <div class="preview-frame">
+            <img id="preview" alt="Inference Target Core Profile Image Container">
+        </div>
+
+        <div id="status-box">System Status: Awaiting Action...</div>
+        <button id="resetBtn" class="btn reset-btn" style="display:none;">🔄 Reset Workspace</button>
+
+        <div id="predictionsHub" class="predictions-hub" style="display:none;">
+            <h3>📊 Network Confidence Metrics (Top 3)</h3>
+            <div id="rankingsContainer"></div>
+        </div>
+
+        <div id="flowerCard" class="flashcard">
+            <div class="flashcard-header">
+                <div>
+                    <h3 id="cardTitle">Flower Class Name</h3>
+                    <p id="cardScientific" class="scientific-name"></p>
+                </div>
+                <span class="badge" id="cardFamily">Family</span>
+            </div>
+            
+            <div class="grid-details">
+                <div class="detail-cell"><strong>🌍 Native Region:</strong> <span id="cardNative"></span></div>
+                <div class="detail-cell"><strong>📅 Bloom Season:</strong> <span id="cardSeason"></span></div>
+                <div class="detail-cell"><strong>☀️ Sunlight:</strong> <span id="cardSun"></span></div>
+                <div class="detail-cell"><strong>💧 Water Matrix:</strong> <span id="cardWater"></span></div>
+                <div class="detail-cell"><strong>🌱 Soil Type:</strong> <span id="cardSoil"></span></div>
+                <div class="detail-cell"><strong>⚠️ Toxicity Status:</strong> <span id="cardToxic"></span></div>
+            </div>
+
+            <div class="narrative-section">
+                <strong>✨ Cultural Meaning:</strong>
+                <p id="cardMeaning"></p>
+            </div>
+            <div class="narrative-section">
+                <strong>💡 Botanical Fun Fact:</strong>
+                <p id="cardFact"></p>
+            </div>
+            <div class="narrative-section">
+                <strong>🩹 Care Instructions:</strong>
+                <p id="cardCare"></p>
+            </div>
+            
+            <div class="card-footer-actions">
+                <a id="cardWiki" class="btn wiki-link" href="#" target="_blank">🌐 Read Wikipedia Entry</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="history-panel">
+        <h3>📜 Inference Session History</h3>
+        <ul id="historyList"></ul>
+    </div>
+</div>
+
+<script src="static/js/script.js"></script>
+</body>
+</html>

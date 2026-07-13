@@ -1,0 +1,179 @@
+:root {
+    --bg-primary: #f8fafc;
+    --card-bg: #ffffff;
+    --text-primary: #0f172a;
+    --text-muted: #64748b;
+    --primary: #d23669;
+    --border-color: #cbd5e1;
+    --shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+[data-theme="dark"] {
+    --bg-primary: #0f172a;
+    --card-bg: #1e293b;
+    --text-primary: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+    --shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.app-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 30px;
+    max-width: 900px;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .app-wrapper { grid-template-columns: 1fr; }
+}
+
+.header-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.action-btn {
+    padding: 8px 16px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--text-primary);
+}
+
+.container {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+}
+
+h1 span { color: var(--primary); }
+.subtitle { color: var(--text-muted); margin-bottom: 25px; }
+
+/* Drag & Drop */
+.drop-zone {
+    border: 2px dashed var(--border-color);
+    padding: 30px;
+    border-radius: 12px;
+    cursor: pointer;
+    background: rgba(0,0,0,0.01);
+}
+.drop-zone:hover { border-color: var(--primary); }
+
+/* Buttons */
+.btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: background 0.2s;
+}
+.primary { background: var(--primary); color: white; }
+.secondary { background: #64748b; color: white; }
+.reset-btn { background: #ef4444; color: white; margin-top: 15px; }
+.wiki-link { text-decoration: none; display: inline-block; background: #0284c7; color: white; }
+
+/* Video & Images */
+video, #preview {
+    max-width: 100%;
+    border-radius: 12px;
+    margin-top: 15px;
+    display: none;
+}
+
+#status-box {
+    margin: 15px 0;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+/* Prediction Bars */
+.predictions-hub {
+    text-align: left;
+    margin-top: 25px;
+}
+.rank-row {
+    margin-bottom: 10px;
+}
+.rank-meta { display: flex; justify-content: space-between; font-weight: 600; margin-bottom: 3px;}
+.bar-track {
+    background: var(--border-color);
+    height: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.bar-fill {
+    background: var(--primary);
+    height: 100%;
+    width: 0%;
+    transition: width 0.4s ease-out;
+}
+
+/* Flashcard */
+.flashcard {
+    display: none;
+    text-align: left;
+    margin-top: 30px;
+    border-top: 4px solid var(--primary);
+    padding-top: 20px;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.flashcard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+.scientific-name { font-style: italic; color: var(--text-muted); margin: 2px 0; }
+.badge { background: var(--primary); color: white; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;}
+
+.grid-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 20px 0;
+    background: rgba(0,0,0,0.02);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.narrative-section { margin-bottom: 15px; }
+.narrative-section p { margin: 4px 0; color: var(--text-muted); }
+
+/* History */
+.history-panel {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    text-align: left;
+    max-height: 500px;
+    overflow-y: auto;
+}
+.history-item {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.9rem;
+}
