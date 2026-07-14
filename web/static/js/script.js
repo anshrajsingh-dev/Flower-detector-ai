@@ -191,25 +191,40 @@ function renderConfidenceRankings(topThree) {
 }
 
 function renderTargetFlashcard(targetName) {
-    const plant = relationalDatabase[targetName];
-    if (!plant) return;
+    // 🔍 THE ALIGNMENT FIX: If the model predicts plural (e.g., "Roses", "Sunflowers", "Tulips"), 
+    // convert it to singular ("Rose", "Sunflower", "Tulip") to match the flowers.json keys.
+    let cleanKey = targetName;
+    if (cleanKey === "Roses") cleanKey = "Rose";
+    if (cleanKey === "Sunflowers") cleanKey = "Sunflower";
+    if (cleanKey === "Tulips") cleanKey = "Tulip";
 
-    document.getElementById('cardTitle').innerText = targetName;
-    document.getElementById('cardScientific').innerText = plant.scientific_name;
-    document.getElementById('cardFamily').innerText = plant.family;
-    document.getElementById('cardNative').innerText = plant.native;
-    document.getElementById('cardSeason').innerText = plant.bloom_season;
-    document.getElementById('cardSun').innerText = plant.sunlight;
-    document.getElementById('cardWater').innerText = plant.water;
-    document.getElementById('cardSoil').innerText = plant.soil;
-    document.getElementById('cardToxic').innerText = plant.toxicity;
-    document.getElementById('cardMeaning').innerText = plant.meaning;
-    document.getElementById('cardFact').innerText = plant.fact;
-    document.getElementById('cardCare').innerText = plant.care;
+    const plant = relationalDatabase[cleanKey];
     
-    const wikiLink = document.getElementById('cardWiki');
-    wikiLink.href = plant.wikipedia;
+    if (!plant) {
+        console.warn(`⚠️ Warning: ${cleanKey} was missing inside flowers.json metadata structure.`);
+        // Fallback display logic if key is entirely absent from file
+        document.getElementById('cardTitle').innerText = targetName;
+        document.getElementById('cardCare').innerText = "Care data missing in flowers.json configuration.";
+        return;
+    }
 
+    // Injects explicit data into text placeholders safely
+    document.getElementById('cardTitle').innerText = targetName;
+    document.getElementById('cardScientific').innerText = plant.scientific_name || "N/A";
+    document.getElementById('cardFamily').innerText = plant.family || "N/A";
+    document.getElementById('cardNative').innerText = plant.native || "N/A";
+    document.getElementById('cardSeason').innerText = plant.bloom_season || "N/A";
+    document.getElementById('cardSun').innerText = plant.sunlight || "N/A";
+    document.getElementById('cardWater').innerText = plant.water || "N/A";
+    document.getElementById('cardSoil').innerText = plant.soil || "N/A";
+    document.getElementById('cardToxic').innerText = plant.toxicity || "N/A";
+    document.getElementById('cardMeaning').innerText = plant.meaning || "No symbolic data available.";
+    document.getElementById('cardFact').innerText = plant.fact || "No fun facts available.";
+    
+    // Injects the valid care text string dynamically
+    document.getElementById('cardCare').innerText = plant.care || "No care instructions provided.";
+    
+    document.getElementById('cardWiki').href = plant.wikipedia || "#";
     document.getElementById('flowerCard').style.display = 'block';
 }
 
