@@ -26,15 +26,14 @@ The project combines machine learning with modern web technologies to create a l
 
 ---
 
-## 🌸 Supported Flowers
+## 🌸 Supported Flowers (12-Universe Dataset)
 
-Currently supported:
+The model is trained to recognize **12 distinct flower species** compiled from the Oxford dataset:
 
-* Daisy
-* Dandelion
-* Rose
-
-More flower species will be added in future updates.
+* Bluebell | Buttercup | Coltsfoot
+* Cowslip | Crocus | Daffodil
+* Daisy | Fritillary | Iris
+* Lily | Pansy | Sunflower
 
 ---
 
@@ -67,18 +66,15 @@ Flower-detector-ai/
 ├── .gitignore
 │
 ├── notebook/
-│   └── training.ipynb
-│
-├── model/
-│   ├── flower_model.onnx
-│   └── labels.json
+│   └── advanced_training.ipynb
 │
 └── web/
     ├── index.html
+    ├── flower_model.onnx    <-- (Model output goes here)
+    ├── labels.json          <-- (Class mappings go here)
     └── static/
         ├── css/
-        ├── js/
-        └── data/
+        └── js/
 ```
 
 ---
@@ -121,15 +117,8 @@ The training dataset is **not included** in this repository to keep the project 
 
 ## 💡 Future Improvements
 
-* Support 15–20 flower species
-* Display prediction confidence score
-* Show Top-3 predictions
-* Improve model accuracy
-* Drag-and-drop image upload
-* Mobile optimization
-* Dark mode
-* Deploy the application online
-* Add scientific names and additional flower information
+* 🚀 Expand dataset to support 30+ flower species.
+* 📈 Fine-tune deeper layers of the MobileNet backbone to push past the current 91.67% test accuracy.
 
 ---
 
